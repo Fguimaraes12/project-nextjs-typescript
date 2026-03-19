@@ -3,15 +3,25 @@
 import { useEffect, useState } from "react";
 import { api } from "../lib/api/todo";
 
+type todo = {
+  id: number;
+  userId: number;
+  todo: string;
+  completed: boolean;
+};
+
+type todoPromise = {
+  todos: todo[];
+};
+
 function useTodos() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<todo[]>([]);
 
   useEffect(() => {
     async function getTodo() {
       try {
-        const { data } = await api.get("/todos");
-        console.log(data.todos);
-        setTodos(data);
+        const { data } = await api.get<todoPromise>("/todos");
+        setTodos(data.todos);
       } catch (error) {
         console.log(error);
       }

@@ -7,7 +7,14 @@ function TodosList() {
 
   return (
     <div>
-      <h1>{JSON.stringify(todos)}</h1>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            <h1 className="">{todo.todo}</h1>
+            <p></p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
