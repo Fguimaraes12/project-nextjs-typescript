@@ -1,1 +1,1 @@
-“Este não é um projeto real, apenas estou aprendendo a usar Next.js com TypeScript.”
+Nota: Este repositório foi desenvolvido com foco em aprendizado e experimentação com Next.js e TypeScript. Algumas práticas de versionamento podem não refletir um ambiente de produção.
