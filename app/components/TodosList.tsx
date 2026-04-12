@@ -3,15 +3,15 @@
 import useTodos from "../hooks/useTodo";
 
 function TodosList() {
-  const { todos } = useTodos();
+  const { state } = useTodos();
 
   return (
     <div>
       <ul>
-        {todos.map((todo) => (
+        {state.todos.map((todo) => (
           <li key={todo.id}>
+            <span>{todo.userId}</span>
             <h1 className="">{todo.todo}</h1>
-            <p></p>
           </li>
         ))}
       </ul>

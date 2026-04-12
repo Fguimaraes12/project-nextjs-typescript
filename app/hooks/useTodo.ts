@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { api } from "../lib/api/todo";
+import { initialState, todoReducer } from "../reducer/todoReducer";
 
-type todo = {
+export type todo = {
   id: number;
   userId: number;
   todo: string;
@@ -13,15 +14,14 @@ type todo = {
 type todoPromise = {
   todos: todo[];
 };
-
 function useTodos() {
-  const [todos, setTodos] = useState<todo[]>([]);
+  const [state, dispatch] = useReducer(todoReducer, initialState);
 
   useEffect(() => {
     async function getTodo() {
       try {
         const { data } = await api.get<todoPromise>("/todos");
-        setTodos(data.todos);
+        dispatch({ type: "SET_TODOS", payload: data.todos });
       } catch (error) {
         console.log(error);
       }
@@ -29,7 +29,8 @@ function useTodos() {
 
     getTodo();
   }, []);
-  return { todos };
+
+  return { state };
 }
 
 export default useTodos;
